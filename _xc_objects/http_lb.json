@@ -1,0 +1,188 @@
+{
+  "metadata": {
+    "name": "test",
+    "namespace": "demo",
+    "labels": {},
+    "annotations": {},
+    "disable": false
+  },
+  "spec": {
+    "domains": [
+      "test.f5app.dev"
+    ],
+    "https": {
+      "http_redirect": true,
+      "add_hsts": true,
+      "port": 443,
+      "default_header": {},
+      "enable_path_normalize": {},
+      "non_default_loadbalancer": {},
+      "header_transformation_type": {
+        "legacy_header_transformation": {}
+      },
+      "connection_idle_timeout": 120000,
+      "tls_cert_params": {
+        "tls_config": {
+          "default_security": {}
+        },
+        "certificates": [
+          {
+            "tenant": "mytenant-longname",
+            "namespace": "demo",
+            "name": "test-f5app-dev",
+            "kind": "certificate"
+          }
+        ],
+        "no_mtls": {}
+      },
+      "http_protocol_options": {
+        "http_protocol_enable_v1_v2": {}
+      }
+    },
+    "downstream_tls_certificate_expiration_timestamps": [
+      {}
+    ],
+    "advertise_on_public_default_vip": {},
+    "default_route_pools": [],
+    "routes": [
+      {
+        "direct_response_route": {
+          "http_method": "GET",
+          "path": {
+            "path": "/direct-return"
+          },
+          "headers": [],
+          "incoming_port": {
+            "no_port_match": {}
+          },
+          "route_direct_response": {
+            "response_code": 200,
+            "response_body": "OK"
+          }
+        }
+      },
+      {
+        "simple_route": {
+          "http_method": "GET",
+          "path": {
+            "path": "/logo.png"
+          },
+          "headers": [],
+          "incoming_port": {
+            "no_port_match": {}
+          },
+          "origin_pools": [
+            {
+              "pool": {
+                "tenant": "mytenant-longname",
+                "namespace": "demo",
+                "name": "alexis-demo-s3-origin",
+                "kind": "origin_pool"
+              },
+              "weight": 1,
+              "priority": 1,
+              "endpoint_subsets": {}
+            }
+          ],
+          "auto_host_rewrite": {}
+        }
+      },
+      {
+        "simple_route": {
+          "http_method": "GET",
+          "path": {
+            "prefix": "/static"
+          },
+          "headers": [],
+          "incoming_port": {
+            "no_port_match": {}
+          },
+          "origin_pools": [
+            {
+              "pool": {
+                "tenant": "mytenant-longname",
+                "namespace": "demo",
+                "name": "alexis-demo-s3-origin",
+                "kind": "origin_pool"
+              },
+              "weight": 1,
+              "priority": 1,
+              "endpoint_subsets": {}
+            }
+          ],
+          "auto_host_rewrite": {},
+          "advanced_options": {
+            "common_hash_policy": {},
+            "priority": "DEFAULT",
+            "endpoint_subsets": {},
+            "regex_rewrite": {
+              "pattern": "^\\/static"
+            },
+            "request_headers_to_add": [],
+            "request_headers_to_remove": [],
+            "response_headers_to_add": [],
+            "response_headers_to_remove": [],
+            "disable_location_add": false,
+            "inherited_waf": {},
+            "disable_spdy": {},
+            "disable_web_socket_config": {},
+            "default_retry_policy": {},
+            "timeout": 30000,
+            "common_buffering": {},
+            "disable_mirroring": {},
+            "retract_cluster": {},
+            "inherited_bot_defense_javascript_injection": {}
+          }
+        }
+      },
+      {
+        "simple_route": {
+          "http_method": "ANY",
+          "path": {
+            "prefix": "/"
+          },
+          "headers": [],
+          "incoming_port": {
+            "no_port_match": {}
+          },
+          "origin_pools": [
+            {
+              "pool": {
+                "tenant": "mytenant-longname",
+                "namespace": "demo",
+                "name": "aws-alb",
+                "kind": "origin_pool"
+              },
+              "weight": 1,
+              "priority": 1,
+              "endpoint_subsets": {}
+            }
+          ],
+          "disable_host_rewrite": {}
+        }
+      }
+    ],
+    "disable_waf": {},
+    "add_location": true,
+    "no_challenge": {},
+    "user_id_client_ip": {},
+    "disable_rate_limit": {},
+    "waf_exclusion_rules": [],
+    "data_guard_rules": [],
+    "blocked_clients": [],
+    "trusted_clients": [],
+    "ddos_mitigation_rules": [],
+    "service_policies_from_namespace": {},
+    "round_robin": {},
+    "disable_trust_client_ip_headers": {},
+    "disable_malicious_user_detection": {},
+    "disable_api_discovery": {},
+    "disable_bot_defense": {},
+    "default_sensitive_data_policy": {},
+    "disable_api_definition": {},
+    "disable_ip_reputation": {},
+    "disable_client_side_defense": {},
+    "graphql_rules": [],
+    "protected_cookies": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "name": "alexis-demo-s3-origin",
+    "namespace": "demo",
+    "labels": {},
+    "annotations": {},
+    "description": "S3 bucket in AWS Paris (eu-west-3)",
+    "disable": false
+  },
+  "spec": {
+    "origin_servers": [
+      {
+        "private_name": {
+          "dns_name": "alexis-demo-s3-origin.s3.eu-west-3.amazonaws.com",
+          "refresh_interval": 300,
+          "site_locator": {
+            "site": {
+              "tenant": "mytenant-long-name",
+              "namespace": "system",
+              "name": "alexis-demo-s3",
+              "kind": "site"
+            }
+          },
+          "inside_network": {}
+        },
+        "labels": {}
+      }
+    ],
+    "use_tls": {
+      "use_host_header_as_sni": {},
+      "tls_config": {
+        "default_security": {}
+      },
+      "volterra_trusted_ca": {},
+      "no_mtls": {},
+      "default_session_key_caching": {}
+    },
+    "port": 443,
+    "same_as_endpoint_port": {},
+    "healthcheck": [],
+    "loadbalancer_algorithm": "LB_OVERRIDE",
+    "endpoint_selection": "LOCAL_PREFERRED"
+  }
+}
