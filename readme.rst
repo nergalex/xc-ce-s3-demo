@@ -3,7 +3,7 @@ Publish a S3 based website with F5 Distributed Cloud
 
 .. image:: ./_pictures/technical_overview.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Technical overview
 
 .. contents:: Contents
@@ -16,7 +16,7 @@ A S3 based web site can be published directly on Internet
 
 .. image:: ./_pictures/0_LZ_direct.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Direct access
 
 ... or secured by F5 Distributed Cloud (XC).
@@ -24,7 +24,7 @@ An IP filtering can be set on the S3 permission policy to allow only `F5 XC Publ
 
 .. image:: ./_pictures/1_RE_LZ.png
    :align: center
-   :width: 500
+   :width: 7100000
    :alt: IP filtering
 
 However, as described `here <https://www.bleepingcomputer.com/news/security/cloudflare-ddos-protections-ironically-bypassed-using-cloudflare/>`_,
@@ -47,7 +47,7 @@ You can deploy a secure private link - a XC VPN link - from your Public Cloud su
 
 .. image:: ./_pictures/VPN_link.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: VPN link
 
 The XC VPN link can be deployed only in XC UI (or Terraform/API), with no action on the Cloud Service Provider console.
@@ -55,7 +55,7 @@ XC will deploy a cluster of XC VMs in your subscription.
 
 .. image:: ./_pictures/XC_Site.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Customer Edge in XC UI
 
 After booting, these VMs will automatically initiate 2 IPsec VPN connection to F5 XC.
@@ -63,7 +63,7 @@ Now, all traffic from F5 XC can directly communicate with your App's private res
 
 .. image:: ./_pictures/3_CE_HUB.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Customer Edge in a HUB
 
 
@@ -77,7 +77,7 @@ So, the CE will be able to connect to your S3 services exposed internally.
 
 .. image:: ./_pictures/4_VPC_endpoint.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Customer Edge in a HUB
 
 
@@ -120,21 +120,21 @@ In the published App configuration in XC, create a ``route`` for ``/static`` PAT
 
 .. image:: ./_pictures/5_XC_LB_routes.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: LB Routes
 
 - the target of this route is your S3 bucket
 
 .. image:: ./_pictures/5_XC_pool.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Pool
 
 - and remove the /static PATH before sending the request to the S3 bucket
 
 .. image:: ./_pictures/5_XC_LB_static_regex.png
    :align: center
-   :width: 500
+   :width: 1000
    :alt: Redirect /static
 
 
