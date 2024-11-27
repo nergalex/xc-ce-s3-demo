@@ -67,7 +67,7 @@ Now, all traffic from F5 XC can directly communicate with your App's private res
    :alt: Customer Edge in a HUB
 
 
-2. Limit access to your S3 bucket
+2. Limit the access on your S3 bucket
 *****************************************
 
 a) S3 listener
@@ -81,7 +81,7 @@ So, the CE will be able to connect to your S3 services exposed internally.
    :alt: Customer Edge in a HUB
 
 
-b) Allow the CE to consume a S3 bucket
+b) Allow the CE to consume your S3 bucket
 ========================================
 In the permission policy of the S3 bucket, allow the CE to access to the desired objects,
 by allowing the Service Endpoint as the source.
