@@ -3,7 +3,7 @@ Publish a S3 based website with F5 Distributed Cloud
 
 .. image:: ./_pictures/technical_overview.png
    :align: center
-   :width: 1000
+   :width: 1200
    :alt: Technical overview
 
 .. contents:: Contents
